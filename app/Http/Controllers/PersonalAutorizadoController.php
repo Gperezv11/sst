@@ -13,7 +13,7 @@ class PersonalAutorizadoController extends Controller
      */
     public function index()
     {
-        return view('Rendiciones.pautorizado');
+        return view('Rediciones.pautorizado');
     }
 
     /**

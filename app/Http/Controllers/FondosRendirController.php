@@ -13,7 +13,7 @@ class FondosRendirController extends Controller
      */
     public function index()
     {
-        return view('Rendiciones.fondosrendir');
+        return view('Rediciones.fondosrendir');
     }
 
     /**

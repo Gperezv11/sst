@@ -162,7 +162,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Malahierba\ChileRut\ChileRutServiceProvider::class,
-        Yajra\DataTables\DataTablesServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -230,7 +229,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'RUT' => Malahierba\ChileRut\Facades\ChileRut::class,
-        'DataTable' => Yajra\DataTables\Facades\DataTables::class,
 
     ],
 

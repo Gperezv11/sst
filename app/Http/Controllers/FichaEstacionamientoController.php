@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Vehiculo;
-use App\Models\Sucursal;
-use App\Models\Patente;
 
 class FichaEstacionamientoController extends Controller
 {
@@ -16,11 +13,7 @@ class FichaEstacionamientoController extends Controller
      */
     public function index()
     {
-        $patente = Patente::all();
-        $sucursal = Sucursal::all();
-        $vehiculo = Vehiculo::all();
-        return view('Parking.estacionamiento')->with('vehiculos',$vehiculo)->with('sucursals',$sucursal)->with('patentes',$patente);
-    
+        return view('estacionamiento');
     }
 
     /**

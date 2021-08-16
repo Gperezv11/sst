@@ -2,6 +2,9 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <link red="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.css"
+      integrity="sha512-9tISBnhZjiw7MV4a1gbemtB9tmPcoJ7ahj8QWIc0daBCdvlKjEA48oLlo6zALYm3037tPYYulT0YQyJIJJoyMQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
@@ -30,7 +33,6 @@
                                 <table id="ficha_tablas" class="table table-striped table-bordered shadow-lg mt-4" style="width: 100%">
                                     <thead>
                                     <tr>
-                                        <th scope="col">#</th>
                                         <th scope="col">RUT</th>
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Apellido Paterno</th>
@@ -38,23 +40,24 @@
                                         <th scope="col">Tipo de contrato</th>
                                         <th scope="col">Fecha de Inicio</th>
                                         <th scope="col">Fecha de Termino</th>
+                                        <th scope="col">Estado</th>
                                         <th scope="col">Acciones</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($fichas as $ficha)
                                         <tr>
-                                            <th scope="row">{{$ficha->id}}</th>
-                                            <td>{{ $ficha->rut }}</td>
+                                            <td scope="row">{{ $ficha->rut }}</td>
                                             <td>{{ $ficha->nombre }}</td>
                                             <td>{{ $ficha->apellido_pat }}</td>
                                             <td>{{ $ficha->apellido_mat }}</td>
                                             <td>{{ $ficha->tipo_contrato }}</td>
                                             <td>{{ $ficha->fecha_ingreso }}</td>
                                             <td>{{ $ficha->fecha_termino }}</td>
+                                            <td><input type="checkbox" class="toggle-class" data-toggle="toggle" data-id="{{$ficha->id}}" data-on="Activo" data-off="Inactivo" {{$ficha->estadoficha==true ? 'checked':'' }}></td>
                                             <td>
                                                 <button type="button" class="btn btn-primary" title="Editar" data-toggle="modal" data-target="#editModal{{$ficha->id}}"><i class="fas fa-user-edit"></i></button>
-                                                <button type="button" class="btn btn-danger" title="Dar de baja"><i class="fas fa-eye-slash"></i></button>
+                                                <button type="button"  class="btn btn-danger" title="Dar de baja"><i class="fas fa-eye-slash"></i></button>
                                             </td>
                                         </tr>
                                         <!-- Modal Edición Ficha -->
@@ -77,74 +80,74 @@
 
                                                                     <!--Datos Personales-->
                                                                     <div class="card card-blue">
-                                                                            <div class="card-header">
-                                                                                <h3 class="card-title">Datos de Personales</h3>
-                                                                            </div>
+                                                                        <div class="card-header">
+                                                                            <h3 class="card-title">Datos de Personales</h3>
+                                                                        </div>
 
-                                                                            <div class="card-body">
-                                                                                <div class="row">
-                                                                                    <div class="col-md-6">
-                                                                                        <img id="blah" src="{{ asset('imagenes/' . $ficha->imagen) }}" height="150px" width="150px"/>
-                                                                                        <input id="imgInp" name="imgInp" type="file" accept="image/*" required>
-                                                                                    </div>
-                                                                                    <div class="col-md-6">
-                                                                                        <label>Rut:</label>
-                                                                                        <input type="text" id="RUT_edit_txt" name="RUT_edit_txt" class="form-control" value="{{$ficha -> rut}}" disabled>
-
-                                                                                        <label>Nombres:</label>
-                                                                                        <input type="text" id="nombre_edit_txt" name="nombre_edit_txt" class="form-control" value="{{$ficha -> nombre}}" disabled>
-
-                                                                                        <label>Apellido Paterno:</label>
-                                                                                        <input type="text" id="apellido_pat_edit_txt" name="apellido_pat_edit_txt" class="form-control" value="{{$ficha -> apellido_pat}}" disabled>
-
-                                                                                        <label>Apellido Materno:</label>
-                                                                                        <input type="text" id="apellido_mat_edit_txt" name="apellido_mat_edit_txt" class="form-control" value="{{$ficha -> apellido_mat}}" disabled>
-
-                                                                                    </div>
+                                                                        <div class="card-body">
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <img id="blah" src="{{ asset('imagenes/' . $ficha->imagen) }}"  height="150px" width="150px"/>
+                                                                                    <input id="imgInp" name="imgInp" type="file" oninvalid="setCustomValidity('Favor selecciona una imagen')" accept="image/*" required>
                                                                                 </div>
-                                                                                <div class="row">
-                                                                                    <div class="col-md-6">
+                                                                                <div class="col-md-6">
+                                                                                    <label>Rut:</label>
+                                                                                    <input type="text" id="RUT_edit_txt" name="RUT_edit_txt" class="form-control" value="{{$ficha -> rut}}" disabled>
 
-                                                                                        <label>Nacionalidad:</label>
-                                                                                        <select id="naci_cat" name="naci_cat" class="form-control">
-                                                                                            <option value="" disabled selected>Elija Nacionalidad</option>
-                                                                                            <option value="Colombiana"{{$ficha->nacionalidad == "Colombiana" ? 'selected' : ''}}>Colombiana</option>
-                                                                                            <option value="Chilena"{{$ficha->nacionalidad == "Chilena" ? 'selected' : ''}}>Chilena</option>
-                                                                                            <option value="3"{{$ficha->nacionalidad == "Venezolana" ? 'selected' : ''}}>Venezolana</option>
-                                                                                        </select>
+                                                                                    <label>Nombres:</label>
+                                                                                    <input type="text" id="nombre_edit_txt" name="nombre_edit_txt" class="form-control" value="{{$ficha -> nombre}}" disabled>
 
-                                                                                        <label>Region:</label>
-                                                                                        <select id="region_cat" name="region_cat" class="form-control">
-                                                                                            <option value="" disabled selected>Elija una región</option>
-                                                                                            @foreach($reg as $cat)
-                                                                                                <option value="{{$cat->id}}"{{$cat->id == $ficha->region ? 'selected' : ''}}>{{$cat->nombre}}</option>
-                                                                                            @endforeach
-                                                                                        </select>
+                                                                                    <label>Apellido Paterno:</label>
+                                                                                    <input type="text" id="apellido_pat_edit_txt" name="apellido_pat_edit_txt" class="form-control" value="{{$ficha -> apellido_pat}}" disabled>
 
-                                                                                        <label>Comuna:</label>
-                                                                                        <select id="comuna_cat" name="comuna_cat" class="form-control">
-                                                                                            @foreach($com as $cato)
-                                                                                                <option value="{{$cato->id}}"{{$cato->id == $ficha->comuna ? 'selected' : ''}}>{{$cato->nombre}}</option>
-                                                                                            @endforeach
-                                                                                        </select>
+                                                                                    <label>Apellido Materno:</label>
+                                                                                    <input type="text" id="apellido_mat_edit_txt" name="apellido_mat_edit_txt" class="form-control" value="{{$ficha -> apellido_mat}}" disabled>
 
-                                                                                        <label>Direccion:</label>
-                                                                                        <input type="text" id="dire_edit_txt" name="dire_edit_txt" class="form-control" value="{{$ficha -> direccion}}">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
 
-                                                                                    </div>
+                                                                                    <label>Nacionalidad:</label>
+                                                                                    <select id="naci_cat" name="naci_cat" class="form-control">
+                                                                                        <option value="" disabled selected>Elija Nacionalidad</option>
+                                                                                        <option value="Colombiana"{{$ficha->nacionalidad == "Colombiana" ? 'selected' : ''}}>Colombiana</option>
+                                                                                        <option value="Chilena"{{$ficha->nacionalidad == "Chilena" ? 'selected' : ''}}>Chilena</option>
+                                                                                        <option value="3"{{$ficha->nacionalidad == "Venezolana" ? 'selected' : ''}}>Venezolana</option>
+                                                                                    </select>
 
-                                                                                    <div class="col-md-6">
+                                                                                    <label>Region:</label>
+                                                                                    <select id="region_cat" name="region_cat" class="form-control">
+                                                                                        <option value="" disabled selected>Elija una región</option>
+                                                                                        @foreach($reg as $cat)
+                                                                                            <option value="{{$cat->id}}"{{$cat->id == $ficha->region ? 'selected' : ''}}>{{$cat->nombre}}</option>
+                                                                                        @endforeach
+                                                                                    </select>
 
-                                                                                        <label>Fono</label>
-                                                                                        <input type="text" id="fono_edit_txt" name="fono_edit_txt" class="form-control" value="{{$ficha -> fono}}">
+                                                                                    <label>Comuna:</label>
+                                                                                    <select id="comuna_cat" name="comuna_cat" class="form-control">
+                                                                                        @foreach($com as $cato)
+                                                                                            <option value="{{$cato->id}}"{{$cato->id == $ficha->comuna ? 'selected' : ''}}>{{$cato->nombre}}</option>
+                                                                                        @endforeach
+                                                                                    </select>
 
-                                                                                        <label>E-Mail</label>
-                                                                                        <input type="text" id="mail_edit_txt" name="mail_edit_txt" class="form-control" value="{{$ficha -> mail}}">
+                                                                                    <label>Direccion:</label>
+                                                                                    <input type="text" id="dire_edit_txt" name="dire_edit_txt" class="form-control" value="{{$ficha -> direccion}}">
 
-                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-6">
+
+                                                                                    <label>Fono</label>
+                                                                                    <input type="text" id="fono_edit_txt" name="fono_edit_txt" class="form-control" value="{{$ficha -> fono}}">
+
+                                                                                    <label>E-Mail</label>
+                                                                                    <input type="text" id="mail_edit_txt" name="mail_edit_txt" class="form-control" value="{{$ficha -> mail}}">
+
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                    </div>
 
                                                                     <!--Datos Empresa-->
                                                                     <div class="card card-success">
@@ -167,10 +170,10 @@
 
                                                                                     <label>Cargo:</label>
                                                                                     <select id="cargo_txt" name="cargo_txt" class="form-control"">
-                                                                                        <option value="" disabled selected>Cargo</option>
-                                                                                        <option value="Cargo 1"{{$ficha->cargo == "Cargo 1" ? 'selected' : ''}}>Cargo 1</option>
-                                                                                        <option value="Cargo 2"{{$ficha->cargo == "Cargo 2" ? 'selected' : ''}}>Cargo 2</option>
-                                                                                        <option value="Cargo 3"{{$ficha->cargo == "Cargo 3" ? 'selected' : ''}}>Cargo 3</option>
+                                                                                    <option value="" disabled selected>Cargo</option>
+                                                                                    <option value="Cargo 1"{{$ficha->cargo == "Cargo 1" ? 'selected' : ''}}>Cargo 1</option>
+                                                                                    <option value="Cargo 2"{{$ficha->cargo == "Cargo 2" ? 'selected' : ''}}>Cargo 2</option>
+                                                                                    <option value="Cargo 3"{{$ficha->cargo == "Cargo 3" ? 'selected' : ''}}>Cargo 3</option>
                                                                                     </select>
 
                                                                                 </div>
@@ -254,55 +257,55 @@
 
                                                                     <!--Datos de Contrato-->
                                                                     <div class="card card-info">
-                                                                            <div class="card-header">
-                                                                                <h3 class="card-title">Datos de Contrato</h3>
+                                                                        <div class="card-header">
+                                                                            <h3 class="card-title">Datos de Contrato</h3>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <div class="row">
+                                                                                <div class="col-4">
+                                                                                    <label>Fecha de Ingreso:</label>
+                                                                                    <input id="fing_date" name="fing_date" type="text" class="form-control datepicker" value="{{$ficha->fecha_ingreso}}">
+                                                                                </div>
+                                                                                <div class="col-4">
+                                                                                    <label>Fecha de Termino:</label>
+                                                                                    <input id="fter_date" name="fter_date" Type="text" class="form-control datepicker" value="{{$ficha->fecha_termino}}">
+                                                                                </div>
+                                                                                <div class="col-4">
+
+                                                                                    <label>Tipo de Contrato:</label>
+                                                                                    <select id="tcon_txt" name="tcon_txt" class="form-control">
+                                                                                        <option value="" disabled selected>Elija tipo de contrato</option>
+                                                                                        <option value="Fijo"{{$ficha->tipo_contrato == "Fijo" ? 'selected' : ''}}>Fijo</option>
+                                                                                        <option value="Indefinido"{{$ficha->tipo_contrato == "Indefinido" ? 'selected' : ''}}>Indefinido</option>
+                                                                                        <option value="Obra o Faena"{{$ficha->tipo_contrato == "Obra o Faena" ? 'selected' : ''}}>Obra o Faena</option>
+
+                                                                                    </select>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="card-body">
-                                                                                <div class="row">
-                                                                                    <div class="col-4">
-                                                                                        <label>Fecha de Ingreso:</label>
-                                                                                        <input id="fing_date" name="fing_date" type="text" class="form-control datepicker" value="{{$ficha->fecha_ingreso}}">
-                                                                                    </div>
-                                                                                    <div class="col-4">
-                                                                                        <label>Fecha de Termino:</label>
-                                                                                        <input id="fter_date" name="fter_date" Type="text" class="form-control datepicker" value="{{$ficha->fecha_termino}}">
-                                                                                    </div>
-                                                                                    <div class="col-4">
 
-                                                                                        <label>Tipo de Contrato:</label>
-                                                                                        <select id="tcon_txt" name="tcon_txt" class="form-control">
-                                                                                            <option value="" disabled selected>Elija tipo de contrato</option>
-                                                                                            <option value="Fijo"{{$ficha->tipo_contrato == "Fijo" ? 'selected' : ''}}>Fijo</option>
-                                                                                            <option value="Indefinido"{{$ficha->tipo_contrato == "Indefinido" ? 'selected' : ''}}>Indefinido</option>
-                                                                                            <option value="Obra o Faena"{{$ficha->tipo_contrato == "Obra o Faena" ? 'selected' : ''}}>Obra o Faena</option>
+                                                                            <div class="row">
 
-                                                                                        </select>
-                                                                                    </div>
+                                                                                <div class="col-4">
+                                                                                    <label>Contrato:</label>                                                                                         }</a>
+                                                                                    <input type="text" class="form-control" value="{{$ficha -> contrato}}" disabled>
+                                                                                    <a href="{{ asset('archivos/'.$ficha->contrato) }}" target="_blank">Visualizar</a>
                                                                                 </div>
 
-                                                                                <div class="row">
-
-                                                                                    <div class="col-4">
-                                                                                        <label>Contrato:</label>                                                                                         }</a>
-                                                                                        <input type="text" class="form-control" value="{{$ficha -> contrato}}" disabled>
-                                                                                        <a href="{{ asset('archivos/'.$ficha->contrato) }}" target="_blank">Visualizar</a>
-                                                                                    </div>
-
-                                                                                    <div class="col-4">
-                                                                                        <label>Anexo:</label>
-                                                                                        <input type="text" class="form-control" value="{{$ficha -> anexo}}" disabled>
-                                                                                        <a href="{{ asset('archivos/'.$ficha->anexo) }}" target="_blank">Visualizar</a>
-                                                                                    </div>
-
-                                                                                    <div class="col-4">
-                                                                                        <label>Finiquito:</label>
-                                                                                        <input type="text" class="form-control" value="{{$ficha -> finiquito}}" disabled>
-                                                                                        <a href="{{ asset('archivos/'.$ficha->finiquito) }}" target="_blank">Visualizar</a>
-                                                                                    </div>
-
+                                                                                <div class="col-4">
+                                                                                    <label>Anexo:</label>
+                                                                                    <input type="text" class="form-control" value="{{$ficha -> anexo}}" disabled>
+                                                                                    <a href="{{ asset('archivos/'.$ficha->anexo) }}" target="_blank">Visualizar</a>
                                                                                 </div>
+
+                                                                                <div class="col-4">
+                                                                                    <label>Finiquito:</label>
+                                                                                    <input type="text" class="form-control" value="{{$ficha -> finiquito}}" disabled>
+                                                                                    <a href="{{ asset('archivos/'.$ficha->finiquito) }}" target="_blank">Visualizar</a>
+                                                                                </div>
+
                                                                             </div>
                                                                         </div>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <!--Datos de Contrato-->
@@ -379,8 +382,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" id="modalCloseBtn" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                                            <button type="button" id="modalCloseBtn" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                            <button type="submit" class="btn btn-primary">Actualizar</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -403,8 +406,11 @@
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"
+            integrity="sha512-F636MAkMAhtTplahL9F6KmTfxTmYcAcjcCkyu0f0voT3N/6vzAuJ4Num55a0gEJ+hRLHhdz3vDvZpf6kqgEa5w=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script type="text/javascript">
+    <script type="text/javascript" defer="defer">
         $(document).ready(function(){
             //Cambio de regiones y comunas
             $(document).on('change','#region_cat',function(){
@@ -437,6 +443,24 @@
                     }
                 });
             });
+
+            $(function (){
+                $('.toggle-class').change(function (){
+                    console.log('Cambio')
+                    var estadoficha = $(this).prop('checked') == true ? 1 : 0;
+                    var id = $(this).data('id');
+                    $.ajax({
+                        type: "GET",
+                        dataType: "json",
+                        url: '/cambiarStatus',
+                        data: {'estadoficha': estadoficha, 'id':id},
+                        success: function(data){
+                            console.log(data.success)
+                        }
+
+                    });
+                });
+            });
         });
         //Datepicker
         $(".datepicker").datepicker({dateFormat: "dd/mm/yy"});
@@ -457,6 +481,29 @@
                 blah.src = URL.createObjectURL(file)
             }
         }
+
+        //Estado Ficha
+        $(function (){
+            $('#toggle-two').bootstrapToggle({
+                on: 'Enabled',
+                off: 'Disabled'
+            });
+        });
+
+        $('.toggle-class').on('change',function(){
+            var status=$(this).prop('checked')==true ? 1 : 0;
+            var ficha_id=$(this).data('id');
+            $.ajax({
+                type:'GET',
+                dataType: 'json',
+                url:'{{route("cambiar.Status")}}',
+                data:{'estadoficha':status, 'id':ficha_id},
+                succedd:function(data){
+                    console.log(data);
+                }
+            })
+        })
+
 
     </script>
 @endsection

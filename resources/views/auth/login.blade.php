@@ -1,11 +1,6 @@
 @extends('layouts.layoutlogin')
 
 @section('content')
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 
     <div class="card" style="width:20rem;">
         <form class="form-signin" method="POST" action="{{ route('login') }}">

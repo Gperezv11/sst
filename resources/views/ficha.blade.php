@@ -367,6 +367,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script type="text/javascript">
+        
         $(document).ready(function(){
             //Cambio de regiones y comunas
             $(document).on('change','#region_cat',function(){
@@ -413,9 +414,10 @@
                 if (submit === false){
                     event.preventDefault();
                 }
-            })
+            });
 
         });
+        
         //formateador Rut
         $('#rut').change(function(){
                 var rut = $('#rut').val()
@@ -435,7 +437,7 @@
 
                 }
 
-            });
+        });
 
         //Visualizador de Imagen
         imgInp.onchange = evt => {
@@ -554,6 +556,6 @@
                 warningBox.parentNode.removeChild(warningBox);
                 warningTimeout = -1;
             }, 2000);
-        }
+        };
     </script>
 @endsection

@@ -12,19 +12,6 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-.main-sidebar{
-  background-color: #2a3f54 !important;
-}
-#search-side{
-  background-color: #183552;
-  border: 1px solid #56606a;
-  color: #fff;
-}
-#sidebar-search-btn{
-  background-color: #183552;
-  border: 1px solid #56606a;
-  color: #fff;
-}
 :root {
   --blue: #007bff;
   --indigo: #6610f2;

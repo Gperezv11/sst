@@ -87,42 +87,6 @@ class TablaFichaController extends Controller
         $fecha_ingreso_out = Carbon::createFromFormat('d/m/Y',$fecha_ingreso)->format('Y-m-d');
         $fecha_termino_out = Carbon::createFromFormat('d/m/Y',$fecha_termino)->format('Y-m-d');
 
-        if ($request->hasFile('imgInp')){
-            $nombrefoto = $request->file('imgInp')->getClientOriginalName();
-            $request->imgInp->move(public_path('imagenes'),$nombrefoto);
-            $ficha->imagen = $nombrefoto;
-            $ficha->save();
-        }
-        if ($request->hasFile('cont_file_re')){
-            $nombrecont = $request->file('cont_file_re')->getClientOriginalName();
-            $request->cont_file_re->move(public_path('archivos'),$nombrecont);
-            $ficha->contrato =$nombrecont;
-            $ficha->save();
-        }
-        if ($request->hasFile('anex_file_re')){
-            $nombreanex = $request->file('anex_file_re')->getClientOriginalName();
-            $request->anex_file_re->move(public_path('archivos'),$nombreanex);
-            $ficha->anexo =$nombreanex;
-            $ficha->save();
-        }
-        if ($request->hasFile('fini_file_re')){
-            $nombrefini = $request->file('fini_file_re')->getClientOriginalName();
-            $request->fini_file_re->move(public_path('archivos'),$nombrefini);
-            $ficha->finiquito =$nombrefini;
-            $ficha->save();
-        }
-        if ($request->hasFile('regint_file_re')){
-            $nombreregint = $request->file('regint_file_re')->getClientOriginalName();
-            $request->regint_file_re->move(public_path('archivos'),$nombreregint);
-            $ficha->regla =$nombreregint;
-            $ficha->save();
-        }
-        if ($request->hasFile('entim_file_re')){
-            $nombreentim = $request->file('entim_file_re')->getClientOriginalName();
-            $request->entim_file_re->move(public_path('archivos'),$nombreentim);
-            $ficha->imple =$nombreentim;
-            $ficha->save();
-        }
 
         $ficha->nacionalidad = $request->get('naci_cat');
         $ficha->region = $request->get('region_cat');

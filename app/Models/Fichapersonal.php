@@ -15,6 +15,7 @@ class Fichapersonal extends Model
     ,'asignacion','afp','salud','plan_salud','fecha_ingreso','fecha_termino','tipo_contrato','foto'
         ,'anexo','entrega_i','entrega_r','imagen','anexo','finiquito','contrato','regla','imple','estadoficha'];
 
+
     public function getFechaIngresoAttribute($value)
     {
         return Carbon::parse($value)->format('d/m/Y');

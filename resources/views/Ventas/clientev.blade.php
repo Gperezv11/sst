@@ -198,7 +198,7 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <label>Rut Representante:</label>
-                                        <input autocomplete="off" id="rut_rep_txt" name="rut_rep_txt" type="text" class="form-control" maxlength="9" placeholder="Rut sin guión y sin puntos" require>
+                                        <input autocomplete="off" id="rut_rep_txt" name="rut_rep_txt" type="text" class="form-control" maxlength="9" placeholder="Rut con guión y sin puntos" require>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="myModalRep" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
@@ -566,6 +566,7 @@
 
             
 
+        //formateador Rut Representante
         $('#rut_rep_txt').change(function(){
             var rut = $('#rut_rep_txt').val()
             var asd = rut.substr(rut.length-1,rut.length)
@@ -603,6 +604,7 @@
 
         });
 
+        
         //archivo requerido
         $('#fichacliente input[type=file]').on('change invalid', function(){
                 var textin = $(this).get(0);

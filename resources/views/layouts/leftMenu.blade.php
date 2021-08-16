@@ -1,46 +1,31 @@
+
+
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar main-sidebar-custom sidebar-dark-primary elevation-4"
-    style="background-color: #2a3f54 !important;">
+<aside class="main-sidebar main-sidebar-custom sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/home" class="brand-link">
-        <img src="images/S png.png" alt="SSTecnologic SA" class="brand-image img-circle elevation-3"
-            style="opacity: .8">
-        <span class="brand-text font-weight-light">{{ Auth::user()->empresa }}</span>
+        <img src="/images/S png.png" alt="SSTecnologic SA" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light"><b>SSTecnologic</b> SA</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="images/CEO2.png" height="160px" class="img-circle elevation-2" alt="User Image">
+                <img src="/images/CEO2.png" height="160px" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ Auth::user()->name }}</a>
-                <a class="d-block">{{ Auth::user()->puesto }}</a>
+                <a href="#" class="d-block">{{ Auth::user()->name  }}</a>
+                <a class="d-block">CEO Fundador</a>
             </div>
         </div>
 
         <!-- SidebarSearch Form -->
         <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" id="search-side" type="search" placeholder="Search"
-                    aria-label="Search">
-                <style>
-                    #search-side {
-                        background-color: #15283c;
-                        border: 1px solid #56606a;
-                        color: #fff;
-                    }
-
-                    #sidebar-search-btn {
-                        background-color: #15283c;
-                        border: 1px solid #56606a;
-                        color: #fff;
-                    }
-
-                </style>
+                <input class="form-control form-control-sidebar" type="search" placeholder="Buscar" aria-label="Search">
                 <div class="input-group-append">
-                    <button id="sidebar-search-btn" class="btn btn-sidebar">
+                    <button class="btn btn-sidebar">
                         <i class="fas fa-search fa-fw"></i>
                     </button>
                 </div>
@@ -146,48 +131,6 @@
                         </li>
                     </ul>
                 </li>
-                {{-- Veterinaria --}}
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-paw"></i>
-                        <p>
-                            Veterinaria
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="macliente" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ingreso Cliente/Mascota</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Listado de Clientes</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="vetmascota" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Listado de Mascotas</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="vetmedico" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ingreso Medico</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="macalendario" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Calendario</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 <!--Parking-->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -199,25 +142,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/patente" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Crear Patente</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/vehiculo" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Marca</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/modelo" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Modelo</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/sucursal" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Sucursal</p>
                             </a>
@@ -229,7 +154,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/tarifa" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tarifa</p>
                             </a>
@@ -248,42 +173,6 @@
                         </li>
                     </ul>
                 </li>
-                <!-- RestoBar -->
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-cart-arrow-down"></i>
-                        <p>
-                            RestoBar
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Productos y servicios</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/reserva" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Reservas</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/mesa" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Mesas</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Informe de ventas</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 <!--Ventas-->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -293,6 +182,7 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/clientev" class="nav-link">
@@ -366,6 +256,7 @@
                                 <p>Boleta Simple</p>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a href="/posMini" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -375,7 +266,7 @@
                         <li class="nav-item">
                             <a href="/orden" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>POS Tomar Orden</p>
+                                <p>POS Orden</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -430,6 +321,12 @@
                             <a href="/listarPrestadores" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Listado Prestadores</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/prestador" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Ingreso Honorarios</p>
                             </a>
                         </li>
                     </ul>
@@ -564,7 +461,6 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-
                         <li class="nav-item">
                             <a href="/prodyservicio" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -581,6 +477,12 @@
                             <a href="/mantUnidadMedida" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Unidades de medida</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Reportes</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -621,7 +523,14 @@
                         </li>
                     </ul>
                 </li>
+
             </ul>
         </nav>
     </div>
+
+    <div class="sidebar-custom">
+        <a href="#" class="btn btn-link"><i class="fas fa-cogs"></i></a>
+        <a href="#" class="btn btn-secondary hide-on-collapse pos-right">Help</a>
+    </div>
 </aside>
+

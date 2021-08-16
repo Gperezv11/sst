@@ -76,8 +76,8 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <th scope="row">14.003.611-0</th>
-                                        <td>ROLANDO SILVA QUIROZ</td>
+                                        <th scope="row">18.460.314-4</th>
+                                        <td>FRANCO JESUS HERNANDEZ HERNANDEZ</td>
                                         <td>Cermaq</td>
                                         <td>Cermaq</td>
                                         <td>24 FILETE 2 MERCEDES GUTIERREZ</td>
@@ -98,21 +98,21 @@
                                         <td>N1</td>
                                         <td>N1</td>
                                         <td>D1</td>
-                                        <td>PL</td>
-                                        <td>PL</td>
-                                        <td>PL</td>
-                                        <td>PL</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>20</td>
+                                        <td>L</td>
+                                        <td style="color:red;">L</td>
+                                        <td>D1</td>
+                                        <td>D1</td>
+                                        <td>D1</td>
+                                        <td>D1</td>
+                                        <td>D1</td>
+                                        <td>L</td>
+                                        <td style="color:red;">L</td>
+                                        <td>N1</td>
+                                        <td>N1</td>
+                                        <td>N1</td>
+                                        <td>N1</td>
+                                        <td>N1</td>
+                                        <td>30</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">15.299.373</th>

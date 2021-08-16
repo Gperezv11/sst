@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Reporte Diario</h1>
+                    <h1>Bitacora</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                        <li class="breadcrumb-item">Reporte Diario</li>
+                        <li class="breadcrumb-item">Control Acceso</li>
                     </ol>
                 </div>
             </div>
@@ -143,6 +143,18 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-cyan">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                Total a Pagar
+                            </h3>
+                        </div>
+                        <div cass="card-body">
+                            <h5 class="text-center">$55.000.000</h5>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

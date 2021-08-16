@@ -31,44 +31,23 @@ class FichaController extends Controller
 
     public function store(Request $request){
 
-        $nombreimple = 'Sin Archivo';
-        $nombreregla = 'Sin Archivo';
-        $nombrefiniquito = 'Sin Archivo';
-        $nombrecontrato = 'Sin Archivo';
-        $nombreanexo = 'Sin Archivo';
-
-
         $nombrefoto = $request->file('imgInp')->getClientOriginalName();
         $request->imgInp->move(public_path('imagenes'),$nombrefoto);
 
-        if ($request->hasFile('anex_file')){
-            $nombreanexo = $request->file('anex_file')->getClientOriginalName();
-            $request->anex_file->move(public_path('archivos'),$nombreanexo);
-        }
+        $nombreanexo = $request->file('anex_file')->getClientOriginalName();
+        $request->anex_file->move(public_path('archivos'),$nombreanexo);
 
-        if ($request->hasFile('fini_file')){
-            $nombrefiniquito = $request->file('fini_file')->getClientOriginalName();
-            $request->fini_file->move(public_path('archivos'),$nombrefiniquito);
-        }
+        $nombrefiniquito = $request->file('fini_file')->getClientOriginalName();
+        $request->fini_file->move(public_path('archivos'),$nombrefiniquito);
 
+        $nombreregla = $request->file('regint_file')->getClientOriginalName();
+        $request->regint_file->move(public_path('archivos'),$nombreregla);
 
-        if ($request->hasFile('regint_file')){
-            $nombreregla = $request->file('regint_file')->getClientOriginalName();
-            $request->regint_file->move(public_path('archivos'),$nombreregla);
-        }
+        $nombreimple = $request->file('entim_file')->getClientOriginalName();
+        $request->entim_file->move(public_path('archivos'),$nombreimple);
 
-
-        if ($request->hasFile('entim_file')){
-            $nombreimple = $request->file('entim_file')->getClientOriginalName();
-            $request->entim_file->move(public_path('archivos'),$nombreimple);
-        }
-
-
-        if ($request->hasFile('cont_file')){
-            $nombrecontrato = $request->file('cont_file')->getClientOriginalName();
-            $request->cont_file->move(public_path('archivos'),$nombrecontrato);
-        }
-
+        $nombrecontrato = $request->file('cont_file')->getClientOriginalName();
+        $request->cont_file->move(public_path('archivos'),$nombrecontrato);
 
         $fecha_ingreso = $request->fing_date;
         $fecha_termino = $request->fter_date;
@@ -123,7 +102,7 @@ class FichaController extends Controller
                 'finiquito'=>$nombrefiniquito,
                 'regla'=>$nombreregla,
                 'imple'=>$nombreimple,
-                'estadoficha'=>1,
+                'estadoficha'=>"Activo",
             ]);
 
             return redirect('/ficha')->with('message','Ficha creada con exito');
@@ -131,13 +110,6 @@ class FichaController extends Controller
             return redirect('ficha')->with('messageerror','Ese Rut ya existe en la base de datos');
         }
 
-    }
-
-    public function cambiarStatus(Request $request){
-        $ficha=Fichapersonal::find($request->ficha_id);
-        $ficha->estadoficha=$request->status;
-        $ficha->save();
-        return response()->json(['success'=>'Cambio con exito']);
     }
 
 }
