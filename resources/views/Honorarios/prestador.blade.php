@@ -5,7 +5,7 @@
     <section class="content-header">
         <div class="row">
             <div class="col-sm-12">
-                @if (session('message'))
+                {{-- @if (session('message'))
                     <div class="alert alert-success">{{ session('message') }}<button type="button" class="close"
                             data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -18,7 +18,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                @endif
+                @endif --}}
 
                 <form name="ingresoHonor" id="ingresoHonor" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -159,7 +159,8 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="float-lg-right">
-                                            <button class="btn btn-primary" class="button" name="enviar" id="enviar">Guardar</button>
+                                            <button class="btn btn-primary" class="button" name="enviar"
+                                                id="enviar">Guardar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -167,7 +168,7 @@
                         </div>
                     </div>
                 </form>
-
+                {{-- <input type="text" id="idprestador" name="idprestador"> --}}
                 <form id="ingresoDocumento" action="{{ route('honorario.store') }}" enctype="multipart/form-data"
                     method="POST">
                     @csrf
@@ -186,16 +187,15 @@
                                         <ul style="list-style-type: none">
                                             <li>
                                                 <label>Fecha de Emición:</label><br>
-                                                <input type="date" id="fechaE" name="fechaE"
-                                                    style="width: 240px" max="<?php echo date('Y-m-d'); ?>"
-                                                    value="<?php echo date('Y-m-d'); ?>">
+                                                <input type="date" id="fechaE" name="fechaE" style="width: 240px"
+                                                    max="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>">
                                                 <br>
                                                 <br>
                                             </li>
                                             <li>
                                                 <label>Periodo:</label><br>
                                                 <input style="width: 240px" type="number" id="periodo" name="periodo"
-                                                 value="<?php echo date('Y-m'); ?>">
+                                                    value="<?php echo date('Y-m'); ?>">
                                                 <br>
                                                 <br>
                                             </li>
@@ -279,12 +279,71 @@
                     </div>
                     {{-- </div>
                     </div> --}}
+                </form>
+                <form action="{{ route('detallehonorario.store') }}">
+                    @csrf
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-blue">
+                                    <div class="card-header">
+                                        <h3 class="card-tile">Detalle Honorarios</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <table border="1" class="table table-striped " id="tablaprueba">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Servicio</th>
+                                                        <th>Comentario</th>
+                                                        <th>Bruto</th>
+                                                        <th>Retencion</th>
+                                                        <th>Liquido a Pagar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
+                                                </tbody>
+                                            </table>
+                                            <div class="form-group">
+                                                <button type="button" class="btn btn-primary mr-2"
+                                                    onclick="agregarFila()">Agregar Prestación</button>
+                                                <button type="button" class="btn btn-danger"
+                                                    onclick="eliminarFila()">Eliminar Prestación</button>
+                                            </div>
+                                        </div>
+                                        <div class="float-lg-right">
+                                            <button class="btn btn-primary" class="submit" name="enviarArchivo"
+                                                id="enviarArchivo">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
     </section>
 
+
     <script type="text/javascript">
+
+        function agregarFila() {
+            document.getElementById("tablaprueba").insertRow(-1).innerHTML = '<td></td><td><input name="servicio" id="servicio" style="width: 240px" type="text"></td><td><input name="comentarioH" id="comentarioH" style="width: 240px" type="text"></td><td><input name="bruto" id="bruto" style="width: 240px" type="text"></td><td><input style="width: 240px" type="text"></td><td></td>';
+        }
+
+        function eliminarFila() {
+            var table = document.getElementById("tablaprueba");
+            var rowCount = table.rows.length;
+            //console.log(rowCount);
+
+            if (rowCount <= 1)
+                alert('No se puede eliminar el encabezado');
+            else
+                table.deleteRow(rowCount - 1);
+        }
+
         //formateador Rut
 
         $('#rut').change(function() {
@@ -420,16 +479,19 @@
                     var telefonoE_s = $('#telefonoE').val();
                     var direccionE_s = $('#direccionE').val();
                     var razon_s = $('#razonSocial').val();
- 
 
 
-                    if (rut_s != "" && nombre_s != "" && apellidoP_s != "" && apellidoM_s != "" && comuna_s !=
-                        "" && direccion_s != "" && cargo_s != "" && email_s != "" && telefono_s != "" && telefonoE_s
-                         != "" && direccionE_s !="" && razon_s !="") {
+
+                    if (rut_s != "" && nombre_s != "" && apellidoP_s != "" && apellidoM_s !=
+                        "" && comuna_s !=
+                        "" && direccion_s != "" && cargo_s != "" && email_s != "" &&
+                        telefono_s != "" && telefonoE_s !=
+                        "" && direccionE_s != "" && razon_s != "") {
 
                         $.ajaxSetup({
                             headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                    'content')
                             }
                         });
                         $.ajax({
@@ -448,108 +510,82 @@
                                 telefonoE: telefonoE_s,
                                 direccionE: direccionE_s,
                                 razon: razon_s,
+
+                                event.preventDefault
                             },
                             success: function(data) {
+                                let arr = JSON.parse(data);
+                                // console.log(arr);
+                                $("#idprestador").val(arr["object"]["id"])
+                                // alertify.set('notifier', 'position', 'top-center');
+                                // alertify.set('notifier', 'delay', 3);
+                                // alertify.success(data);
 
-                                alertify.set('notifier', 'position', 'top-center');
-                                alertify.set('notifier', 'delay', 3);
-                                alertify.success(data);
-
-                                $('#rut').val('');
-                                $('#nombre').val('');
-                                $('#apellidoP').val('');
-                                $('#apellidoM').val('');
-                                $('#region_cat').val('');
-                                $('#comuna_cat').val('');
-                                $('#direccion').val('');
-                                $('#cargo').val('');
-                                $('#email').val('');
-                                $('#telefono').val('');
-                                $('#telefonoE').val('');
-                                $('#direccionE').val('');
-                                $('#razonE').val('');
+                                // $('#rut').val('');
+                                // $('#nombre').val('');
+                                // $('#apellidoP').val('');
+                                // $('#apellidoM').val('');
+                                // $('#region_cat').val('');
+                                // $('#comuna_cat').val('');
+                                // $('#direccion').val('');
+                                // $('#cargo').val('');
+                                // $('#email').val('');
+                                // $('#telefono').val('');
+                                // $('#telefonoE').val('');
+                                // $('#direccionE').val('');
+                                // $('#razonE').val('');
 
                             }
                         });
                         $.ajaxSetup({
                             headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                    'content')
                             }
                         });
-                        $.ajax({
-                            type: 'get',
-                            url: '{!! URL::to('rutFinder') !!}',
-                            data: {
-                                'rut': rut
-                            },
-                            success: function(data) {
-                                var idprestador = data[0].id;
-                                console.log('ID Capturada');
-                                console.log(data[0].id);
-                                $.ajax({
-                                    url: '{{ route('honorario.store') }}',
-                                    type: "POST",
-                                    data: {
-                                        id_prestador: idprestador,
+                        // $.ajax({
+                        //     type: 'get',
+                        //     url: '{!! URL::to('rutFinder') !!}',
+                        //     data: {
+                        //         'rut': rut
+                        //     },
+                        //     success: function(data) {
+                        //         var idprestador = data[0].id;
+                        //         console.log('ID Capturada');
+                        //         console.log(data[0].id);
+                        //         $.ajax({
+                        //             url: '{{ route('honorario.store') }}',
+                        //             type: "POST",
+                        //             data: {
+                        //                 id_prestador: idprestador,
 
-                                    },
-                                    success: function(data) {
-                                        console.log(
-                                            'Mascota creada')
-                                        alertify.set('notifier', 'position',
-                                            'top-center');
-                                        alertify.set('notifier', 'delay',
-                                        3);
-                                        alertify.success(data);
+                        //             },
+                        //             success: function(data) {
+                        //                 console.log(
+                        //                     'Mascota creada')
+                        //                 alertify.set('notifier', 'position',
+                        //                     'top-center');
+                        //                 alertify.set('notifier', 'delay',
+                        //                 3);
+                        //                 alertify.success(data);
 
-                                    },
-                                });
-                            }
-                        });
+                        //             },
+                        //         });
+                        //     }
+                        // });
                     } else {
                         alertify.set('notifier', 'position', 'top-center');
                         alertify.set('notifier', 'delay', 3);
                         alertify.error(
-                            'Ningun campo puede estar vacio. Por favor ingrese todos los datos');
+                            'Ningun campo puede estar vacio. Por favor ingrese todos los datos'
+                        );
                     }
 
 
                 })
             });
 
-            // $(document).on('change', '#rut', function() {
-
-            //     var rut = $(this).val();
-            //     console.log(rut);
-
-            //     $.ajax({
-            //         type: 'get',
-            //         url: '{!! URL::to('rutFinder') !!}',
-            //         data: {
-            //             '': rut
-            //         },
-            //         success: function(data) {
-            //             console.log(data);
-            //             document.getElementById("nombre").value = data[0].nombre_prestador;
-            //             document.getElementById("apellidoP").value = data[0].apellido_p_prestador;
-            //             document.getElementById("apellidoM").value = data[0].apellido_m_prestador;
-            //             document.getElementById("email").value = data[0].email_prestador;
-            //             document.getElementById("telefono").value = data[0].telefono_prestador;
-            //             document.getElementById("direccion").value = data[0].direccion_prestador;
-            //             document.getElementById("razonSocial").value = data[0].razon_social_prestador;
-            //             document.getElementById("direccionE").value = data[0].direccion_empresa_prestador;
-            //             document.getElementById("telefonoE").value = data[0].telefono_empresa_prestador;
-            //             document.getElementById("cargo").value = data[0].cargos_id;
-            //             $('#region_cat').val(data[0].region);
-            //             $('#comuna_cat').val(data[0].comuna);
-
-            //             var idprestador = data[0].id;
-            //         },
-            //         error: function(data) {
-            //             console.log('Nuevo Ingreso')
-            //         }
-            //     });
-            // });
+            
 
         });
     </script>

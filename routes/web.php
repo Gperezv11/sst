@@ -44,6 +44,7 @@ Route::resource('/reporta','App\Http\Controllers\ReporteAsistenciaController');
 Route::resource('/estador', 'App\Http\Controllers\EstadoResultadoController');
 Route::resource('prestador',PrestadorController::class);
 Route::resource('honorario',HonorarioController::class);
+Route::resource('detallehonorario',Detalle_HonorarioController::class);
 Route::get('formatoRut', [PrestadorController::class, 'formatoRut']);
 Route::get('rutFinder',[PrestadorController::class, 'rutFinder']);
 

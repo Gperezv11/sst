@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Honorario;
+use App\Models\Detalle_honorario;
 use Illuminate\Http\Request;
-use App\Models\Prestador;
 
-class HonorarioController extends Controller
+class Detalle_HonorarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +24,7 @@ class HonorarioController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -36,40 +35,19 @@ class HonorarioController extends Controller
      */
     public function store(Request $request)
     {
+        $insertar = new Detalle_honorario();
 
-        $documento = $request->file('fini_file')->getClientOriginalName();
-
-
-        // echo "<PRE>";
-        // print_r($documento);
-        // die();
-
-
-
-        $prestador2 = new Prestador;
-        $insertar = new Honorario;
-
-        $insertar->n_documento_honorario            = $request->numeroDocumento;
-        $insertar->fecha_emicion_honorario          = $request->fechaE;
-        $insertar->fecha_vencimiento_honorario      = $request->vencimiento;
-        $insertar->plazo                            = $request->plazo;
-        $insertar->periodo                          = $request->periodo;
-        $insertar->forma_pago_id                    = $request->tipoPago;
-        $insertar->tipo_documento_honorario_Id      = $request->tipoDoc;
-        $insertar->comentario                       = $request->comentario;
-        $insertar->prestadors_id                    = $request->'1';
-        $insertar->url_honorario                    = $request->file('fini_file')->getClientOriginalName();
-
-        $request->fini_file->move(public_path('doc'), $documento);
-
-
+        $insertar->tipo_servicio                = $request->servicio;
+        $insertar->nombre_prestador             = $request->comentarioH;
+        $insertar->bruto         = $request->bruto;
+        $insertar->apellido_m_prestador         = $request->apellidoM;
+        $insertar->email_prestador              = $request->email;
 
         $insertar->timestamps = false;
 
         // Prestador::create($request->all()) ->save();
         // $insertar = $request->all()->save();
         $insertar->save();
-        return redirect('prestador');
     }
 
     /**

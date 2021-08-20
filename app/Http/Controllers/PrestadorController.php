@@ -10,6 +10,7 @@ use App\Models\Tipo_documento_honorario;
 use App\Models\Forma_pago;
 
 use Illuminate\Http\Request;
+use stdClass;
 
 class PrestadorController extends Controller
 {
@@ -75,7 +76,11 @@ class PrestadorController extends Controller
             $insertar->save();
             
         }
-        return redirect('prestador');
+        // $arr = new stdClass;
+        // $arr->object = $insertar;
+        // $arr->mensaje = 'prestador';
+        // return json_encode($arr);
+        // return redirect('prestador');
     }
 
     /**
