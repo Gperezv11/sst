@@ -12,9 +12,9 @@ class Detalle_honorario extends Model
         'tipo_servicio',
         'comentario',
         'bruto',
-        // 'retencion',
-        // 'liquido',
-        // 'honorarios_id'
+        'retencion',
+        'liquido',
+        'honorarios_id'
     ];
     use HasFactory;
 }

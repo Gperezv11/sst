@@ -7,7 +7,6 @@ use App\Http\Controllers\PrestadorController;
 use App\Http\Controllers\HonorarioController;
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,6 +47,6 @@ Route::resource('detallehonorario',Detalle_HonorarioController::class);
 Route::get('formatoRut', [PrestadorController::class, 'formatoRut']);
 Route::get('rutFinder',[PrestadorController::class, 'rutFinder']);
 
-
+//Route::post('prestador',HonorarioController::class);
 
 

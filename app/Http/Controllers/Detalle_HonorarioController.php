@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Detalle_honorario;
 use Illuminate\Http\Request;
 
 class Detalle_HonorarioController extends Controller
@@ -24,7 +23,7 @@ class Detalle_HonorarioController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -35,19 +34,7 @@ class Detalle_HonorarioController extends Controller
      */
     public function store(Request $request)
     {
-        $insertar = new Detalle_honorario();
-
-        $insertar->tipo_servicio                = $request->servicio;
-        $insertar->nombre_prestador             = $request->comentarioH;
-        $insertar->bruto         = $request->bruto;
-        $insertar->apellido_m_prestador         = $request->apellidoM;
-        $insertar->email_prestador              = $request->email;
-
-        $insertar->timestamps = false;
-
-        // Prestador::create($request->all()) ->save();
-        // $insertar = $request->all()->save();
-        $insertar->save();
+        //
     }
 
     /**

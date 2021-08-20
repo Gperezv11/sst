@@ -74,13 +74,13 @@ class PrestadorController extends Controller
             // Prestador::create($request->all()) ->save();
             // $insertar = $request->all()->save();
             $insertar->save();
-            
+
         }
         // $arr = new stdClass;
         // $arr->object = $insertar;
         // $arr->mensaje = 'prestador';
         // return json_encode($arr);
-        // return redirect('prestador');
+        return redirect('prestador');
     }
 
     /**

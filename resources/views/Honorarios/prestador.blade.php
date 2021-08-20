@@ -185,6 +185,7 @@
                                 <div class="row">
                                     <div class="card col-md-4">
                                         <ul style="list-style-type: none">
+                                            <input type="hidden" id="rutpc" name="rutpc" class="form-control">
                                             <li>
                                                 <label>Fecha de Emición:</label><br>
                                                 <input type="date" id="fechaE" name="fechaE" style="width: 240px"
@@ -272,7 +273,7 @@
                                 </div>
                                 <div class="float-lg-right">
                                     <button class="btn btn-primary" class="submit" name="enviarArchivo"
-                                        id="enviarArchivo">Guardar</button>
+                                        id="enviarArchivo" onclick="PasarValor()">Guardar</button>
                                 </div>
                             </div>
                         </div>
@@ -330,7 +331,7 @@
     <script type="text/javascript">
 
         function agregarFila() {
-            document.getElementById("tablaprueba").insertRow(-1).innerHTML = '<td></td><td><input name="servicio" id="servicio" style="width: 240px" type="text"></td><td><input name="comentarioH" id="comentarioH" style="width: 240px" type="text"></td><td><input name="bruto" id="bruto" style="width: 240px" type="text"></td><td><input style="width: 240px" type="text"></td><td></td>';
+            document.getElementById("tablaprueba").insertRow(-1).innerHTML = '<td></td><td><input name="servicio" id="servicio" style="width: 240px" type="text"></td><td><input name="comentarioH" id="comentarioH" style="width: 240px" type="text"></td><td><input style="width: 240px" type="text"></td><td><input style="width: 240px" type="text"></td><td></td>';
         }
 
         function eliminarFila() {
@@ -343,7 +344,11 @@
             else
                 table.deleteRow(rowCount - 1);
         }
-
+        //pasar datos
+        function PasarValor()
+        {
+            document.getElementById("rutpc").value = document.getElementById("rut").value;
+        };
         //formateador Rut
 
         $('#rut').change(function() {
@@ -510,8 +515,6 @@
                                 telefonoE: telefonoE_s,
                                 direccionE: direccionE_s,
                                 razon: razon_s,
-
-                                event.preventDefault
                             },
                             success: function(data) {
                                 let arr = JSON.parse(data);
@@ -585,7 +588,39 @@
                 })
             });
 
-            
+            // $(document).on('change', '#rut', function() {
+
+            //     var rut = $(this).val();
+            //     console.log(rut);
+
+            //     $.ajax({
+            //         type: 'get',
+            //         url: '{!! URL::to('rutFinder') !!}',
+            //         data: {
+            //             '': rut
+            //         },
+            //         success: function(data) {
+            //             console.log(data);
+            //             document.getElementById("nombre").value = data[0].nombre_prestador;
+            //             document.getElementById("apellidoP").value = data[0].apellido_p_prestador;
+            //             document.getElementById("apellidoM").value = data[0].apellido_m_prestador;
+            //             document.getElementById("email").value = data[0].email_prestador;
+            //             document.getElementById("telefono").value = data[0].telefono_prestador;
+            //             document.getElementById("direccion").value = data[0].direccion_prestador;
+            //             document.getElementById("razonSocial").value = data[0].razon_social_prestador;
+            //             document.getElementById("direccionE").value = data[0].direccion_empresa_prestador;
+            //             document.getElementById("telefonoE").value = data[0].telefono_empresa_prestador;
+            //             document.getElementById("cargo").value = data[0].cargos_id;
+            //             $('#region_cat').val(data[0].region);
+            //             $('#comuna_cat').val(data[0].comuna);
+
+            //             var idprestador = data[0].id;
+            //         },
+            //         error: function(data) {
+            //             console.log('Nuevo Ingreso')
+            //         }
+            //     });
+            // });
 
         });
     </script>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Honorario;
 use Illuminate\Http\Request;
 use App\Models\Prestador;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class HonorarioController extends Controller
 {
@@ -44,24 +46,30 @@ class HonorarioController extends Controller
         // print_r($documento);
         // die();
 
+        $rut = $request->rutpc;
+        $id = DB::table('prestadors')->select('id')->where('rut_prestador', '=',$rut)->first();
 
+        $datefechae = new Carbon($request->fechaE);
+        $datefechav = new Carbon($request->vencimiento);
+        $endDate = $datefechae->diffInDays($datefechav);
 
+        $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+        $mes = $meses[($datefechae->format('n')) - 1];
         $prestador2 = new Prestador;
         $insertar = new Honorario;
 
         $insertar->n_documento_honorario            = $request->numeroDocumento;
         $insertar->fecha_emicion_honorario          = $request->fechaE;
         $insertar->fecha_vencimiento_honorario      = $request->vencimiento;
-        $insertar->plazo                            = $request->plazo;
-        $insertar->periodo                          = $request->periodo;
+        $insertar->plazo                            = $endDate;
+        $insertar->periodo                          = $mes;
         $insertar->forma_pago_id                    = $request->tipoPago;
         $insertar->tipo_documento_honorario_Id      = $request->tipoDoc;
         $insertar->comentario                       = $request->comentario;
-        $insertar->prestadors_id                    = $request->'1';
+        $insertar->prestadors_id                    = $id->id;
         $insertar->url_honorario                    = $request->file('fini_file')->getClientOriginalName();
 
         $request->fini_file->move(public_path('doc'), $documento);
-
 
 
         $insertar->timestamps = false;
