@@ -9,12 +9,12 @@ class Detalle_honorario extends Model
 {
     protected $fillable = [
 
+        'honorarios_id',
         'tipo_servicio',
-        'comentario',
+        'cometario',
         'bruto',
         'retencion',
-        'liquido',
-        'honorarios_id'
+        'liquido'
     ];
     use HasFactory;
 }

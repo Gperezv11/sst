@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Detalle_honorario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Detalle_HonorarioController extends Controller
 {
@@ -34,7 +36,22 @@ class Detalle_HonorarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $insertar = new Detalle_honorario();
+        $nhonorario = $request->idh;
+        $id = DB::table('honorarios')->select('id')->where('n_documento_honorario', '=',$nhonorario)->first();
+        DB::table('detalle_honorarios')->insert([
+            'tipo_servicio' => $request->servicio,
+            'cometario' => $request->comentarioH,
+            'bruto' => $request->bruto,
+            'retencion' => $request->retencion,
+            'liquido' => $request->liquido,
+            'honorarios_id' => $id->id,
+           ]);
+
+        $insertar->timestamps = false;
+
+       // $insertar->save();
+        return redirect('prestador');
     }
 
     /**

@@ -281,7 +281,7 @@
                     {{-- </div>
                     </div> --}}
                 </form>
-                <form action="{{ route('detallehonorario.store') }}">
+                <form action="{{ route('detallehonorario.store') }}" method="POST">
                     @csrf
                     <div class="container-fluid">
                         <div class="row">
@@ -295,7 +295,7 @@
                                             <table border="1" class="table table-striped " id="tablaprueba">
                                                 <thead class="thead-dark">
                                                     <tr>
-                                                        <th>ID</th>
+                                                        <th>Numero documento</th>
                                                         <th>Servicio</th>
                                                         <th>Comentario</th>
                                                         <th>Bruto</th>
@@ -304,7 +304,12 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-
+                                                    <td><input name="idh" id="idh" style="width: 100px" type="text"></td>
+                                                    <td><input name="servicio" id="servicio" style="width: 200px" type="text"></td>
+                                                    <td><input name="comentarioH" id="comentarioH" style="width: 200px" type="text"></td>
+                                                    <td><input name="bruto" id="bruto" style="width: 100px" type="text" onKeyUp="calcularliquido();"></td>
+                                                    <td><input name="retencion" id="retencion" style="width: 100px" type="text" readonly=»readonly»></td>
+                                                    <td><input name="liquido" id="liquido" style="width: 100px" type="text" readonly=»readonly»></td>
                                                 </tbody>
                                             </table>
                                             <div class="form-group">
@@ -348,6 +353,16 @@
         function PasarValor()
         {
             document.getElementById("rutpc").value = document.getElementById("rut").value;
+        };
+        function calcularliquido()
+        {
+            var bruto = $('#bruto').val();
+            var retencion = 0;
+            var liquido = 0;
+            retencion = (bruto*11.5)/100;
+            liquido = bruto-retencion;
+            document.getElementById("retencion").value = retencion;
+            document.getElementById("liquido").value = liquido;
         };
         //formateador Rut
 
@@ -586,6 +601,7 @@
 
 
                 })
+
             });
 
             // $(document).on('change', '#rut', function() {

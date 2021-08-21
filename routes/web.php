@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\Detalle_HonorarioController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\FichaController;
 use App\Http\Controllers\PrestadorController;
 use App\Http\Controllers\HonorarioController;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
