@@ -304,20 +304,54 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <td><input name="idh" id="idh" style="width: 100px" type="text"></td>
-                                                    <td><input name="servicio" id="servicio" style="width: 200px" type="text"></td>
-                                                    <td><input name="comentarioH" id="comentarioH" style="width: 200px" type="text"></td>
-                                                    <td><input name="bruto" id="bruto" style="width: 100px" type="text" onKeyUp="calcularliquido();"></td>
-                                                    <td><input name="retencion" id="retencion" style="width: 100px" type="text" readonly=»readonly»></td>
-                                                    <td><input name="liquido" id="liquido" style="width: 100px" type="text" readonly=»readonly»></td>
+                                                    <tr>
+                                                    <td><input name="idh" id="idh" style="width: 100px" type="text" onKeyUp="Pasarnum();" required></td>
+                                                    <td><input name="servicio" id="servicio" style="width: 200px" type="text" required></td>
+                                                    <td><input name="comentarioH" id="comentarioH" style="width: 200px" type="text" required></td>
+                                                    <td><input name="bruto" id="bruto" style="width: 100px" type="text" onKeyUp="calcularliquido();" required></td>
+                                                    <td><input name="retencion" id="retencion" style="width: 100px" type="text" readonly=»readonly» required></td>
+                                                    <td><input name="liquido" id="liquido" style="width: 100px" type="text" readonly=»readonly» required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input name="idh2" id="idh2" style="width: 100px" type="text" required readonly=»readonly»></td>
+                                                        <td><input name="servicio2" id="servicio2" style="width: 200px" type="text" required></td>
+                                                        <td><input name="comentarioH2" id="comentarioH2" style="width: 200px" type="text" required></td>
+                                                        <td><input name="bruto2" id="bruto2" style="width: 100px" type="text" onKeyUp="calcularliquido2();" required></td>
+                                                        <td><input name="retencion2" id="retencion2" style="width: 100px" type="text" readonly=»readonly» required></td>
+                                                        <td><input name="liquido2" id="liquido2" style="width: 100px" type="text" readonly=»readonly» required></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input name="idh3" id="idh3" style="width: 100px" type="text" required readonly=»readonly»></td>
+                                                            <td><input name="servicio3" id="servicio3" style="width: 200px" type="text" required></td>
+                                                            <td><input name="comentarioH3" id="comentarioH3" style="width: 200px" type="text" required></td>
+                                                            <td><input name="bruto3" id="bruto3" style="width: 100px" type="text" onKeyUp="calcularliquido3();" required></td>
+                                                            <td><input name="retencion3" id="retencion3" style="width: 100px" type="text" readonly=»readonly» required></td>
+                                                            <td><input name="liquido3" id="liquido3" style="width: 100px" type="text" readonly=»readonly» required></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input name="idh4" id="idh4" style="width: 100px" type="text" required readonly=»readonly»></td>
+                                                                <td><input name="servicio4" id="servicio4" style="width: 200px" type="text" required></td>
+                                                                <td><input name="comentarioH4" id="comentarioH4" style="width: 200px" type="text" required></td>
+                                                                <td><input name="bruto4" id="bruto4" style="width: 100px" type="text" onKeyUp="calcularliquido4();" required></td>
+                                                                <td><input name="retencion4" id="retencion4" style="width: 100px" type="text" readonly=»readonly» required></td>
+                                                                <td><input name="liquido4" id="liquido4" style="width: 100px" type="text" readonly=»readonly» required></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><input name="idh5" id="idh5" style="width: 100px" type="text" required readonly=»readonly»></td>
+                                                                    <td><input name="servicio5" id="servicio5" style="width: 200px" type="text" required></td>
+                                                                    <td><input name="comentarioH5" id="comentarioH5" style="width: 200px" type="text" required></td>
+                                                                    <td><input name="bruto5" id="bruto5" style="width: 100px" type="text" onKeyUp="calcularliquido5();" required></td>
+                                                                    <td><input name="retencion5" id="retencion5" style="width: 100px" type="text" readonly=»readonly» required></td>
+                                                                    <td><input name="liquido5" id="liquido5" style="width: 100px" type="text" readonly=»readonly» required></td>
+                                                                    </tr>
                                                 </tbody>
                                             </table>
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <button type="button" class="btn btn-primary mr-2"
                                                     onclick="agregarFila()">Agregar Prestación</button>
                                                 <button type="button" class="btn btn-danger"
                                                     onclick="eliminarFila()">Eliminar Prestación</button>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <div class="float-lg-right">
                                             <button class="btn btn-primary" class="submit" name="enviarArchivo"
@@ -335,9 +369,9 @@
 
     <script type="text/javascript">
 
-        function agregarFila() {
-            document.getElementById("tablaprueba").insertRow(-1).innerHTML = '<td></td><td><input name="servicio" id="servicio" style="width: 240px" type="text"></td><td><input name="comentarioH" id="comentarioH" style="width: 240px" type="text"></td><td><input style="width: 240px" type="text"></td><td><input style="width: 240px" type="text"></td><td></td>';
-        }
+       // function agregarFila() {
+       //     document.getElementById("tablaprueba").insertRow(-1).innerHTML = '<tr><td><input name="idh" id="idh" style="width: 100px" type="text"></td><td><input name="servicio" id="servicio" style="width: 200px" type="text"></td><td><input name="comentarioH" id="comentarioH" style="width: 200px" type="text"></td><td><input name="bruto" id="bruto" style="width: 100px" type="text" onKeyUp="calcularliquido();"></td><td><input name="retencion" id="retencion" style="width: 100px" type="text" readonly=»readonly»></td><td><input name="liquido" id="liquido" style="width: 100px" type="text" readonly=»readonly»></td>';
+       // }
 
         function eliminarFila() {
             var table = document.getElementById("tablaprueba");
@@ -354,6 +388,14 @@
         {
             document.getElementById("rutpc").value = document.getElementById("rut").value;
         };
+        //pasar numero
+        function Pasarnum()
+        {
+            document.getElementById("idh2").value = document.getElementById("idh").value;
+            document.getElementById("idh3").value = document.getElementById("idh").value;
+            document.getElementById("idh4").value = document.getElementById("idh").value;
+            document.getElementById("idh5").value = document.getElementById("idh").value;
+        };
         //calcular retencion y liquido
         function calcularliquido()
         {
@@ -364,6 +406,46 @@
             liquido = bruto-retencion;
             document.getElementById("retencion").value = retencion;
             document.getElementById("liquido").value = liquido;
+        };
+        function calcularliquido2()
+        {
+            var bruto = $('#bruto2').val();
+            var retencion = 0;
+            var liquido = 0;
+            retencion = (bruto*11.5)/100;
+            liquido = bruto-retencion;
+            document.getElementById("retencion2").value = retencion;
+            document.getElementById("liquido2").value = liquido;
+        };
+        function calcularliquido3()
+        {
+            var bruto = $('#bruto3').val();
+            var retencion = 0;
+            var liquido = 0;
+            retencion = (bruto*11.5)/100;
+            liquido = bruto-retencion;
+            document.getElementById("retencion3").value = retencion;
+            document.getElementById("liquido3").value = liquido;
+        };
+        function calcularliquido4()
+        {
+            var bruto = $('#bruto4').val();
+            var retencion = 0;
+            var liquido = 0;
+            retencion = (bruto*11.5)/100;
+            liquido = bruto-retencion;
+            document.getElementById("retencion4").value = retencion;
+            document.getElementById("liquido4").value = liquido;
+        };
+        function calcularliquido5()
+        {
+            var bruto = $('#bruto5').val();
+            var retencion = 0;
+            var liquido = 0;
+            retencion = (bruto*11.5)/100;
+            liquido = bruto-retencion;
+            document.getElementById("retencion5").value = retencion;
+            document.getElementById("liquido5").value = liquido;
         };
         //calcular fecha
         function calcularfecha(){
@@ -615,9 +697,9 @@
                         );
                     }
 
-                    
+
                 })
-                
+
 
             });
 

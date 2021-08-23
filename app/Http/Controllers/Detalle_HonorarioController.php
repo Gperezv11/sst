@@ -47,6 +47,38 @@ class Detalle_HonorarioController extends Controller
             'liquido' => $request->liquido,
             'honorarios_id' => $id->id,
            ]);
+           DB::table('detalle_honorarios')->insert([
+            'tipo_servicio' => $request->servicio2,
+            'cometario' => $request->comentarioH2,
+            'bruto' => $request->bruto2,
+            'retencion' => $request->retencion2,
+            'liquido' => $request->liquido2,
+            'honorarios_id' => $id->id,
+           ]);
+           DB::table('detalle_honorarios')->insert([
+            'tipo_servicio' => $request->servicio3,
+            'cometario' => $request->comentarioH3,
+            'bruto' => $request->bruto3,
+            'retencion' => $request->retencion3,
+            'liquido' => $request->liquido3,
+            'honorarios_id' => $id->id,
+           ]);
+           DB::table('detalle_honorarios')->insert([
+            'tipo_servicio' => $request->servicio4,
+            'cometario' => $request->comentarioH4,
+            'bruto' => $request->bruto4,
+            'retencion' => $request->retencion4,
+            'liquido' => $request->liquido4,
+            'honorarios_id' => $id->id,
+           ]);
+           DB::table('detalle_honorarios')->insert([
+            'tipo_servicio' => $request->servicio5,
+            'cometario' => $request->comentarioH5,
+            'bruto' => $request->bruto5,
+            'retencion' => $request->retencion5,
+            'liquido' => $request->liquido5,
+            'honorarios_id' => $id->id,
+           ]);
 
         $insertar->timestamps = false;
 
