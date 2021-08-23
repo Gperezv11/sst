@@ -189,14 +189,14 @@
                                             <li>
                                                 <label>Fecha de Emición:</label><br>
                                                 <input type="date" id="fechaE" name="fechaE" style="width: 240px"
-                                                    max="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>">
+                                                    max="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>" oninput="calcularfecha(),obtenermes()">
                                                 <br>
                                                 <br>
                                             </li>
                                             <li>
                                                 <label>Periodo:</label><br>
-                                                <input style="width: 240px" type="number" id="periodo" name="periodo"
-                                                    value="<?php echo date('Y-m'); ?>">
+                                                <input style="width: 240px" type="text" id="periodo" name="periodo"
+                                                    >
                                                 <br>
                                                 <br>
                                             </li>
@@ -212,7 +212,7 @@
                                             <li>
                                                 <label>Vencimiento:</label><br>
                                                 <input style="width: 240px" type="DATE" id="vencimiento" name="vencimiento"
-                                                    value="<?php echo date('Y-m-d'); ?>">
+                                                    value="<?php echo date('Y-m-d'); ?>" oninput="calcularfecha(), obtenermes()">
                                                 <br>
                                                 <br>
                                             </li>
@@ -354,6 +354,7 @@
         {
             document.getElementById("rutpc").value = document.getElementById("rut").value;
         };
+        //calcular retencion y liquido
         function calcularliquido()
         {
             var bruto = $('#bruto').val();
@@ -364,6 +365,21 @@
             document.getElementById("retencion").value = retencion;
             document.getElementById("liquido").value = liquido;
         };
+        //calcular fecha
+        function calcularfecha(){
+            var fecha1 = new Date(document.getElementById("fechaE").value);
+            var fecha2 = new Date(document.getElementById("vencimiento").value);
+            var diff = fecha2.getTime() - fecha1.getTime();
+            document.getElementById("plazo").value = Math.round(diff / (1000 * 60 * 60 * 24));
+        }
+        //obtener mes
+        function obtenermes(){
+            var fecha1 = new Date(document.getElementById("fechaE").value);
+            var mes = fecha1.getMonth();
+            let meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+            let nombre = meses[mes];
+            document.getElementById("periodo").value = nombre;
+        }
         //formateador Rut
 
         $('#rut').change(function() {
@@ -599,8 +615,9 @@
                         );
                     }
 
-
+                    
                 })
+                
 
             });
 

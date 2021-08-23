@@ -48,21 +48,14 @@ class HonorarioController extends Controller
 
         $rut = $request->rutpc;
         $id = DB::table('prestadors')->select('id')->where('rut_prestador', '=',$rut)->first();
-
-        $datefechae = new Carbon($request->fechaE);
-        $datefechav = new Carbon($request->vencimiento);
-        $endDate = $datefechae->diffInDays($datefechav);
-
-        $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-        $mes = $meses[($datefechae->format('n')) - 1];
         $prestador2 = new Prestador;
         $insertar = new Honorario;
 
         $insertar->n_documento_honorario            = $request->numeroDocumento;
         $insertar->fecha_emicion_honorario          = $request->fechaE;
         $insertar->fecha_vencimiento_honorario      = $request->vencimiento;
-        $insertar->plazo                            = $endDate;
-        $insertar->periodo                          = $mes;
+        $insertar->plazo                            = $request->plazo;
+        $insertar->periodo                          = $request->periodo;
         $insertar->forma_pago_id                    = $request->tipoPago;
         $insertar->tipo_documento_honorario_Id      = $request->tipoDoc;
         $insertar->comentario                       = $request->comentario;
