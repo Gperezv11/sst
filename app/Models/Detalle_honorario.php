@@ -10,7 +10,7 @@ class Detalle_honorario extends Model
     protected $fillable = [
 
         'honorarios_id',
-        'tipo_servicio',
+        'tipo_servicio_id',
         'cometario',
         'bruto',
         'retencion',

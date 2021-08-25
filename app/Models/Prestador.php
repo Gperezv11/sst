@@ -18,10 +18,10 @@ class Prestador extends Model
         'direccion_prestador',
         'cargos_id',
         'comuna_id',
-        'razon_social_prestador',
-        'direccion_empresa_prestador',
-        'telefono_empresa_prestador'
+        'tipo_servicio_id'
     ];
+
+    
 
 
     use HasFactory;

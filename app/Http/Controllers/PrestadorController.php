@@ -8,9 +8,11 @@ use App\Models\Cargos;
 use App\Models\Honorario;
 use App\Models\Tipo_documento_honorario;
 use App\Models\Forma_pago;
+use App\Models\Sucursal;
+use App\Models\Tipo_servicios;
+
 
 use Illuminate\Http\Request;
-use stdClass;
 
 class PrestadorController extends Controller
 {
@@ -23,10 +25,13 @@ class PrestadorController extends Controller
     {
         $reg            = Region::all();
         $cargos         = Cargos::all();
+        $sucursal       = Sucursal::all();
+        $servicio       = Tipo_servicios::all();
+
         $tipo_documento = Tipo_documento_honorario::all();
         $forma          = Forma_pago::all();
 
-        return view('Honorarios.prestador')->with('reg', $reg)->with('cargos', $cargos)->with('tipo_documento', $tipo_documento)->with('forma', $forma);
+        return view('Honorarios.prestador')->with('reg', $reg)->with('cargos', $cargos)->with('tipo_documento', $tipo_documento)->with('forma', $forma)->with('sucursal', $sucursal)->with('servicio', $servicio);
     }
 
     /**
@@ -65,9 +70,7 @@ class PrestadorController extends Controller
             $insertar->direccion_prestador          = $request->direccion;
             $insertar->cargos_id                    = $request->cargo;
             $insertar->comunas_id                   = $request->comuna_cat;
-            $insertar->razon_social_prestador       = $request->razonSocial;
-            $insertar->direccion_empresa_prestador  = $request->direccionE;
-            $insertar->telefono_empresa_prestador   = $request->telefonoE;
+
 
             $insertar->timestamps = false;
 

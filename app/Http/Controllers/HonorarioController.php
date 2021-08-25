@@ -61,6 +61,7 @@ class HonorarioController extends Controller
         $insertar->comentario                       = $request->comentario;
         $insertar->prestadors_id                    = $id->id;
         $insertar->url_honorario                    = $request->file('fini_file')->getClientOriginalName();
+        $insertar->sucursals_id                     = $request->sucur;
 
         $request->fini_file->move(public_path('doc'), $documento);
 

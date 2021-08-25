@@ -109,64 +109,23 @@
                                                         </select>
                                                     </li>
                                                 </ul>
-                                                </select>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card card-blue">
-                            <div class="card-header">
-                                <h3 class="card-title">Como Empresa</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <ul style="list-style-type: none">
-                                            <li>
-                                                {{-- <label>Sucursal:</label>
-                                        <input type="text" id="sucursal" name="sucursal"
-                                            class="form-control" Required>
-                                            <br> --}}
-                                            </li>
-                                            <li>
-                                                <label>Teléfono:</label>
-                                                <input type="number" id="telefonoE" name="telefonoE" class="form-control"
-                                                    Required>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <ul style="list-style-type: none">
-                                            <li>
-                                                <label>Dirección:</label>
-                                                <input type="text" id="direccionE" name="direccionE" class="form-control"
-                                                    Required>
-                                                <br>
-                                            </li>
-                                            <li>
-                                                <label>Razon Social:</label>
-                                                <input type="text" id="razonSocial" name="razonSocial" class="form-control"
-                                                    Required>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="float-lg-right">
-                                            <button class="btn btn-primary" class="button" name="enviar"
-                                                id="enviar">Guardar</button>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="float-lg-right">
+                                                    <button class="btn btn-primary" class="button" name="enviar"
+                                                        id="enviar">Guardar</button>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </div>                                   
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </form>
                 {{-- <input type="text" id="idprestador" name="idprestador"> --}}
                 <form id="ingresoDocumento" action="{{ route('honorario.store') }}" enctype="multipart/form-data"
@@ -195,15 +154,29 @@
                                             </li>
                                             <li>
                                                 <label>Periodo:</label><br>
-                                                <input style="width: 240px" type="text" id="periodo" name="periodo"
-                                                    >
+                                                <input style="width: 240px" type="text" id="periodo" name="periodo">
                                                 <br>
                                                 <br>
                                             </li>
                                             <li>
-                                                <label>Plazo:</label><br>
+                                                <label>Plazo (en días):</label><br>
                                                 <input style="width: 240px" type="number" id="plazo" name="plazo"
                                                     value="<?php echo date('Y-m-d'); ?>">
+                                                    <br>
+                                                    <br>
+                                            </li>
+                                            <li>
+                                                <label>Sucursal:</label>
+                                                <br>
+                                                <select style="width: 240px" name="sucur" id="sucur" class="form-select"
+                                                    Required>
+                                                    <option value="" disable selected>--seleccionar Sucursal--
+                                                    </option>
+                                                    @foreach ($sucursal as $s)
+                                                        <option value="{{ $s->id }}">
+                                                            {{ $s->nombre }}</option>
+                                                    @endforeach
+                                                </select>
                                             </li>
                                         </ul>
                                     </div>
@@ -259,7 +232,6 @@
                                                             {{ $f->nombre_forma_pago }}</option>
                                                     @endforeach
                                                 </select>
-                                                </select>
                                                 <br>
                                                 <br>
                                             </li>
@@ -295,8 +267,9 @@
                                             <table border="1" class="table table-striped " id="tablaprueba">
                                                 <thead class="thead-dark">
                                                     <tr>
+                                                        <th>ID</th>
                                                         <th>Numero documento</th>
-                                                        <th>Servicio</th>
+                                                        <th>Producto o Servicio</th>
                                                         <th>Comentario</th>
                                                         <th>Bruto</th>
                                                         <th>Retencion</th>
@@ -305,44 +278,98 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
+                                                        <td>1</td>
                                                     <td><input name="idh" id="idh" style="width: 100px" type="text" onKeyUp="Pasarnum();" required></td>
-                                                    <td><input name="servicio" id="servicio" style="width: 200px" type="text" required></td>
+                                                    <td> 
+                                                        <select style="width: 240px" name="servicio" id="servicio"
+                                                            class="form-select" Required>
+                                                            <option value="" disable selected>--seleccionar Servicio--</option>
+                                                            @foreach ($servicio as $s)
+                                                                <option value="{{ $s->id }}">
+                                                                    {{ $s->nombre_servicio }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </td>
                                                     <td><input name="comentarioH" id="comentarioH" style="width: 200px" type="text" required></td>
                                                     <td><input name="bruto" id="bruto" style="width: 100px" type="text" onKeyUp="calcularliquido();" required></td>
                                                     <td><input name="retencion" id="retencion" style="width: 100px" type="text" readonly=»readonly» required></td>
                                                     <td><input name="liquido" id="liquido" style="width: 100px" type="text" readonly=»readonly» required></td>
                                                     </tr>
                                                     <tr>
+                                                        <td>2</td>
                                                         <td><input name="idh2" id="idh2" style="width: 100px" type="text" required readonly=»readonly»></td>
-                                                        <td><input name="servicio2" id="servicio2" style="width: 200px" type="text" required></td>
-                                                        <td><input name="comentarioH2" id="comentarioH2" style="width: 200px" type="text" required></td>
-                                                        <td><input name="bruto2" id="bruto2" style="width: 100px" type="text" onKeyUp="calcularliquido2();" required></td>
-                                                        <td><input name="retencion2" id="retencion2" style="width: 100px" type="text" readonly=»readonly» required></td>
-                                                        <td><input name="liquido2" id="liquido2" style="width: 100px" type="text" readonly=»readonly» required></td>
+                                                        <td> 
+                                                            <select style="width: 240px" name="servicio2" id="servicio2"
+                                                                class="form-select">
+                                                                <option value="" disable selected>--seleccionar Servicio--
+                                                                </option>
+                                                                @foreach ($servicio as $s)
+                                                                    <option value="{{ $s->id }}">
+                                                                        {{ $s->nombre_servicio }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </td>
+                                                        <td><input name="comentarioH2" id="comentarioH2" style="width: 200px" type="text"></td>
+                                                        <td><input name="bruto2" id="bruto2" style="width: 100px" type="text" onKeyUp="calcularliquido2();"></td>
+                                                        <td><input name="retencion2" id="retencion2" style="width: 100px" type="text" readonly=»readonly»></td>
+                                                        <td><input name="liquido2" id="liquido2" style="width: 100px" type="text" readonly=»readonly»></td>
                                                         </tr>
                                                         <tr>
+                                                            <td>3</td>
                                                             <td><input name="idh3" id="idh3" style="width: 100px" type="text" required readonly=»readonly»></td>
-                                                            <td><input name="servicio3" id="servicio3" style="width: 200px" type="text" required></td>
-                                                            <td><input name="comentarioH3" id="comentarioH3" style="width: 200px" type="text" required></td>
-                                                            <td><input name="bruto3" id="bruto3" style="width: 100px" type="text" onKeyUp="calcularliquido3();" required></td>
-                                                            <td><input name="retencion3" id="retencion3" style="width: 100px" type="text" readonly=»readonly» required></td>
-                                                            <td><input name="liquido3" id="liquido3" style="width: 100px" type="text" readonly=»readonly» required></td>
+                                                            <td> 
+                                                                <select style="width: 240px" name="servicio3" id="servicio3"
+                                                                    class="form-select">
+                                                                    <option value="" disable selected>--seleccionar Servicio--
+                                                                    </option>
+                                                                    @foreach ($servicio as $s)
+                                                                        <option value="{{ $s->id }}">
+                                                                            {{ $s->nombre_servicio }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </td>
+                                                            <td><input name="comentarioH3" id="comentarioH3" style="width: 200px" type="text"></td>
+                                                            <td><input name="bruto3" id="bruto3" style="width: 100px" type="text" onKeyUp="calcularliquido3();"></td>
+                                                            <td><input name="retencion3" id="retencion3" style="width: 100px" type="text" readonly=»readonly»></td>
+                                                            <td><input name="liquido3" id="liquido3" style="width: 100px" type="text" readonly=»readonly»></td>
                                                             </tr>
                                                             <tr>
+                                                                <td>4</td>
                                                                 <td><input name="idh4" id="idh4" style="width: 100px" type="text" required readonly=»readonly»></td>
-                                                                <td><input name="servicio4" id="servicio4" style="width: 200px" type="text" required></td>
-                                                                <td><input name="comentarioH4" id="comentarioH4" style="width: 200px" type="text" required></td>
-                                                                <td><input name="bruto4" id="bruto4" style="width: 100px" type="text" onKeyUp="calcularliquido4();" required></td>
-                                                                <td><input name="retencion4" id="retencion4" style="width: 100px" type="text" readonly=»readonly» required></td>
-                                                                <td><input name="liquido4" id="liquido4" style="width: 100px" type="text" readonly=»readonly» required></td>
+                                                                <td> 
+                                                                    <select style="width: 240px" name="servicio4" id="servicio4"
+                                                                        class="form-select">
+                                                                        <option value="" disable selected>--seleccionar Servicio--
+                                                                        </option>
+                                                                        @foreach ($servicio as $s)
+                                                                            <option value="{{ $s->id }}">
+                                                                                {{ $s->nombre_servicio }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </td>
+                                                                <td><input name="comentarioH4" id="comentarioH4" style="width: 200px" type="text"></td>
+                                                                <td><input name="bruto4" id="bruto4" style="width: 100px" type="text" onKeyUp="calcularliquido4();"></td>
+                                                                <td><input name="retencion4" id="retencion4" style="width: 100px" type="text" readonly=»readonly»></td>
+                                                                <td><input name="liquido4" id="liquido4" style="width: 100px" type="text" readonly=»readonly»></td>
                                                                 </tr>
                                                                 <tr>
+                                                                    <td>5</td>
                                                                     <td><input name="idh5" id="idh5" style="width: 100px" type="text" required readonly=»readonly»></td>
-                                                                    <td><input name="servicio5" id="servicio5" style="width: 200px" type="text" required></td>
-                                                                    <td><input name="comentarioH5" id="comentarioH5" style="width: 200px" type="text" required></td>
-                                                                    <td><input name="bruto5" id="bruto5" style="width: 100px" type="text" onKeyUp="calcularliquido5();" required></td>
-                                                                    <td><input name="retencion5" id="retencion5" style="width: 100px" type="text" readonly=»readonly» required></td>
-                                                                    <td><input name="liquido5" id="liquido5" style="width: 100px" type="text" readonly=»readonly» required></td>
+                                                                    <td> 
+                                                                        <select style="width: 240px" name="servicio5" id="servicio5"
+                                                                            class="form-select">
+                                                                            <option value="" disable selected>--seleccionar Servicio--
+                                                                            </option>
+                                                                            @foreach ($servicio as $s)
+                                                                                <option value="{{ $s->id }}">
+                                                                                    {{ $s->nombre_servicio }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </td>
+                                                                    <td><input name="comentarioH5" id="comentarioH5" style="width: 200px" type="text"></td>
+                                                                    <td><input name="bruto5" id="bruto5" style="width: 100px" type="text" onKeyUp="calcularliquido5();"></td>
+                                                                    <td><input name="retencion5" id="retencion5" style="width: 100px" type="text" readonly=»readonly»></td>
+                                                                    <td><input name="liquido5" id="liquido5" style="width: 100px" type="text" readonly=»readonly»></td>
                                                                     </tr>
                                                 </tbody>
                                             </table>

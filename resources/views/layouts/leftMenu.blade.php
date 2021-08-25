@@ -233,7 +233,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/eVenta" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Reportes</p>
                             </a>
@@ -297,6 +297,12 @@
                             <a href="/listarProveedores" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Listado Proveedores</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/reporteCompra" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Reporte Compra</p>
                             </a>
                         </li>
                     </ul>
@@ -408,7 +414,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/plancuentas" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Plan de Cuentas</p>
                             </a>

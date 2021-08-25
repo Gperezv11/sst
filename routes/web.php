@@ -7,6 +7,8 @@ use App\Http\Controllers\FichaController;
 use App\Http\Controllers\PrestadorController;
 use App\Http\Controllers\HonorarioController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ExcelVentaController;
+use App\Http\Controllers\plancuentasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +49,10 @@ Route::resource('honorario',HonorarioController::class);
 Route::resource('detallehonorario',Detalle_HonorarioController::class);
 Route::get('formatoRut', [PrestadorController::class, 'formatoRut']);
 Route::get('rutFinder',[PrestadorController::class, 'rutFinder']);
+Route::resource('eVenta',ExcelVentaController::class);
+Route::resource('plancuentas',plancuentasController::class);
+Route::resource('tipo_servicio', plancuentasController::class);
 
-//Route::post('prestador',HonorarioController::class);
+
 
 
