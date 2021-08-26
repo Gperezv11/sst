@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <section class="content-header">
-        <div class="container-fluid">
+        <div class="table table-striped table-bordered">
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Productos y Servicios</h1>
@@ -20,10 +20,10 @@
                     </ol>
                 </div>
             </div>
-            <div class="row">
+            <table>
                 <div class="col-sm-12">
                     <div class="card card-blue">
-                        <div class="card-body">
+                        {{-- <div class="card-body"> --}}
                             <div class="row scrollmenu">
                                 <table id="tabla-reportecompra" class="table table-hover dt-responsive" cellspacing="0" width="100%" style="text-align: center">
                                     <thead>
@@ -31,6 +31,7 @@
                                             <td>Id</td>
                                             <td>Servicio</td>
                                             <td>tipo de cuenta</td>
+                                            <td>Opciones</td>
 
                                         </tr>
                                     </thead>
@@ -69,12 +70,12 @@
                                                     <div class="form-group">
                                                         <label for="">Servicio</label>
                                                         <input type="text" class="form-control" name="servicio_edit"
-                                                            id="servicio_edit" value="{{ $c->nombre }}">
+                                                            id="servicio_edit" value="{{ $c->nombre }}" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-group">
                                                             <label for="">Tipo de cuenta</label>
-                                                            <select class='form-control' name="cuenta_edit" id="cuenta_edit">
+                                                            <select class='form-control' name="cuenta_edit" id="cuenta_edit" required>
                                                                 <option value="" disabled selected>Elija un tipo de cuenta</option>
                                                                 @foreach ($tcuenta as $s)
                                                                     <option value='{{ $s->id }}'>{{ $s->nombre_tipo_cuenta }}</option>
@@ -116,7 +117,7 @@
                                                             <div class="form-group">
                                                                 <div class="form-group">
                                                                     <label for="">Tipo de cuenta</label>
-                                                                    <select class='form-control' name="cuenta" id="cuenta">
+                                                                    <select class='form-control' name="cuenta" id="cuenta" required>
                                                                         <option value="" disabled selected>Elija un tipo de cuenta</option>
                                                                         @foreach ($tcuenta as $s)
                                                                             <option value='{{ $s->id }}'>{{ $s->nombre_tipo_cuenta }}</option>
@@ -134,7 +135,7 @@
                                             </div>
                                         </div>
                             </div>
-                        </div>
+                        {{-- </div> --}}
                                 <style>
                                     div.scrollmenu {
                                         overflow: auto;
@@ -162,7 +163,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </table>
             </div>
         </div>
     </section>

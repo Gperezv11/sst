@@ -22,10 +22,13 @@ class plancuentasController extends Controller
     public function store(Request $request)
     {
         $c = new tipo_servicios();
-        $c->nombre_servicio     =   $request->servicio;
+        if($request->cuenta!=""){
+           $c->nombre_servicio     =   $request->servicio;
         $c->tipo_cuenta_id      =   $request->cuenta;
         $c->timestamps = false;
         $c->save();
+        }
+
         return redirect('plancuentas');
     }
 
@@ -61,11 +64,14 @@ class plancuentasController extends Controller
     public function update(Request $request, $id)
     {
         $c = tipo_servicios::find($id);
-
-        $c->nombre_servicio     =   $request->servicio_edit;
+        if($request->cuenta_edit !=0){
+          $c->nombre_servicio     =   $request->servicio_edit;
         $c->tipo_cuenta_id      =   $request->cuenta_edit;
         $c->timestamps = false;
         $c->save();
+
+        }
+
 
         return redirect('tipo_servicio');
     }
@@ -78,8 +84,8 @@ class plancuentasController extends Controller
      */
     public function destroy($id)
     {
-        $med = tipo_servicios::find($id);
-        $med->delete();
+        $ser = tipo_servicios::find($id);
+        $ser->delete();
 
         return redirect('tipo_servicio');
     }
